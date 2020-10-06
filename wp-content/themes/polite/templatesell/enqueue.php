@@ -71,8 +71,8 @@ function polite_scripts() {
         'paged'     => $paged,
         'max_num_pages'      => $max_num_pages,
         'next_posts'      => next_posts( $max_num_pages, false ),
-        'show_more'      => __( 'View More', 'polite' ),
-        'no_more_posts'        => __( 'No More', 'polite' ),
+        'show_more'      => __( 'Voir plus', 'polite' ),
+        'no_more_posts'        => __( 'Rien de plus', 'polite' ),
     ));
 
 	wp_enqueue_script( 'polite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20200412', true );

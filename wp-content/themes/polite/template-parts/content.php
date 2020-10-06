@@ -16,7 +16,7 @@ $date = absint($polite_theme_options['polite-show-hide-date']);
 $category = absint($polite_theme_options['polite-show-hide-category']);
 $author = absint($polite_theme_options['polite-show-hide-author']);
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class($masonry); ?> class="col-md-8">
+<article id="post-<?php the_ID(); ?>" <?php post_class($masonry); ?> class="col-md-4">
     <div class="post-wrap <?php echo esc_attr($image_location); ?>">
         <?php if(has_post_thumbnail()) { ?>
             <div class="post-media">

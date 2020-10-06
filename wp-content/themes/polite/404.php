@@ -16,11 +16,11 @@ get_header();
 				<main id="main" class="site-main">
 					<div class="page-404-content">
 						<h1 class="error-code"><?php esc_html_e( '404', 'polite' ); ?></h1>
-						<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'polite' ); ?></h1>
-						<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'polite' ); ?></p>
+						<h1 class="page-title"><?php esc_html_e( 'Oups! Cette page ne peut pas être trouvée.', 'polite' ); ?></h1>
+						<p><?php esc_html_e( 'Il semble que rien n\'ait été trouvé à cette adresse, vous pouvez peut-être essayer une recherche?', 'polite' ); ?></p>
 						<?php get_search_form(); ?>
 						<div class="back_home">
-							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php esc_html_e( 'Back to Home', 'polite' ); ?></a>
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php esc_html_e( 'Retour à l\'accueil', 'polite' ); ?></a>
 						</div>
 					</div><!-- .error-404 -->
 				</main><!-- #main -->

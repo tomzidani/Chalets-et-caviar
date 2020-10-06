@@ -33,7 +33,7 @@ if (!function_exists('polite_posts_navigation')) :
             } else {
                 $output_page = $page_number + 1;
             }
-            echo "<div class='ajax-pagination text-center'><div class='show-more' data-number='$output_page'><i class='fa fa-refresh'></i>" . __('View More', 'polite') . "</div><div id='free-temp-post'></div></div>";
+            echo "<div class='ajax-pagination text-center'><div class='show-more' data-number='$output_page'><i class='fa fa-refresh'></i>" . __('Voir plus', 'polite') . "</div><div id='free-temp-post'></div></div>";
         } else {
             return false;
         }

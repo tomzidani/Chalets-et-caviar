@@ -9,7 +9,7 @@
 ?>
 <section class="no-results not-found">
     <div class="page-content">
-        <h1 class="page-title"><?php esc_html_e('Nothing Found', 'polite'); ?></h1>
+        <h1 class="page-title"><?php esc_html_e('Aucun résultat', 'polite'); ?></h1>
         <?php
         if (is_home() && current_user_can('publish_posts')) :
             
