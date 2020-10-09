@@ -77,19 +77,6 @@ if ( is_active_sidebar('footer-1') || is_active_sidebar('footer-2') || is_active
 					<div class="copyright">
 						<?php echo $copyright; ?>
 					</div>
-					<div class="site-info">
-						<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'polite' ) ); ?>">
-							<?php
-							/* translators: %s: CMS name, i.e. WordPress. */
-							printf( esc_html__( 'Proudly powered by %s', 'polite' ), 'WordPress' );
-							?>
-						</a>
-						<span class="sep"> | </span>
-						<?php
-						/* translators: 1: Theme name, 2: Theme author. */
-						printf( esc_html__( 'Theme: %1$s by %2$s.', 'polite' ), 'Polite', '<a href="https://www.templatesell.com/">Template Sell</a>' );
-						?>
-					</div>
 				</div>
 				
 			</div>
