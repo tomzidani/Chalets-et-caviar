@@ -149,6 +149,7 @@ class Grunion_Contact_Form_Plugin {
 		}
 
 		add_action( 'loop_start', array( 'Grunion_Contact_Form', '_style_on' ) );
+		add_action( 'pre_amp_render_post', array( 'Grunion_Contact_Form', '_style_on' ) );
 
 		add_action( 'wp_ajax_grunion-contact-form', array( $this, 'ajax_request' ) );
 		add_action( 'wp_ajax_nopriv_grunion-contact-form', array( $this, 'ajax_request' ) );
@@ -541,7 +542,7 @@ class Grunion_Contact_Form_Plugin {
 		if ( ! $submission_result ) {
 			header( 'HTTP/1.1 500 Server Error', 500, true );
 			echo '<div class="form-error"><ul class="form-errors"><li class="form-error-message">';
-			esc_html_e( 'An error occurred. Please try again later.', 'jetpack' );
+			esc_html_e( 'Une erreur est survenue, veuillez réessayer plus tard.', 'jetpack' );
 			echo '</li></ul></div>';
 		} elseif ( is_wp_error( $submission_result ) ) {
 			header( 'HTTP/1.1 400 Bad Request', 403, true );
@@ -549,7 +550,7 @@ class Grunion_Contact_Form_Plugin {
 			echo esc_html( $submission_result->get_error_message() );
 			echo '</li></ul></div>';
 		} else {
-			echo '<h3>' . esc_html__( 'Message Sent', 'jetpack' ) . '</h3>' . $submission_result;
+			echo '<h3>' . esc_html__( 'Votre message a été envoyé', 'jetpack' ) . '</h3>' . $submission_result;
 		}
 
 		die;
@@ -1929,7 +1930,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			'submit_button_text'     => __( 'Envoyer', 'jetpack' ),
 			// These attributes come from the block editor, so use camel case instead of snake case.
 			'customThankyou'         => '', // Whether to show a custom thankyou response after submitting a form. '' for no, 'message' for a custom message, 'redirect' to redirect to a new URL.
-			'customThankyouMessage'  => __( 'Merci pour votre message!', 'jetpack' ), // The message to show when customThankyou is set to 'message'.
+			'customThankyouMessage'  => __( 'Merci!', 'jetpack' ), // The message to show when customThankyou is set to 'message'.
 			'customThankyouRedirect' => '', // The URL to redirect to when customThankyou is set to 'redirect'.
 			'jetpackCRM'             => true, // Whether Jetpack CRM should store the form submission.
 		);
@@ -2058,7 +2059,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 
 		if ( is_wp_error( $form->errors ) && $form->errors->get_error_codes() ) {
 			// There are errors.  Display them
-			$r .= "<div class='form-error'>\n<h3>" . __( 'Error!', 'jetpack' ) . "</h3>\n<ul class='form-errors'>\n";
+			$r .= "<div class='form-error'>\n<h3>" . __( 'Il y a un problème!', 'jetpack' ) . "</h3>\n<ul class='form-errors'>\n";
 			foreach ( $form->errors->get_error_messages() as $message ) {
 				$r .= "\t<li class='form-error-message'>" . esc_html( $message ) . "</li>\n";
 			}
@@ -2076,8 +2077,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			$back_url = remove_query_arg( array( 'contact-form-id', 'contact-form-sent', '_wpnonce' ) );
 
 			$r_success_message =
-				'<h3>' . __( 'Message Sent', 'jetpack' ) .
-				' (<a href="' . esc_url( $back_url ) . '">' . esc_html__( 'go back', 'jetpack' ) . '</a>)' .
+				'<h3>' . __( 'Votre message a été envoyé', 'jetpack' ) .
 				"</h3>\n\n";
 
 			// Don't show the feedback details unless the nonce matches
@@ -2165,7 +2165,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 					$submit_button_text = $form->get_attribute( 'submit_button_text' );
 				}
 
-				$r .= "\t\t<button type='submit' class='show-more " . esc_attr( $submit_button_class ) . "'";
+				$r .= "\t\t<button type='submit' class='send-btn " . esc_attr( $submit_button_class ) . "'";
 				if ( ! empty( $submit_button_styles ) ) {
 					$r .= " style='" . esc_attr( $submit_button_styles ) . "'";
 				}
@@ -2210,10 +2210,6 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 	static function success_message( $feedback_id, $form ) {
 		if ( 'message' === $form->get_attribute( 'customThankyou' ) ) {
 			$message = wpautop( $form->get_attribute( 'customThankyouMessage' ) );
-		} else {
-			$message = '<blockquote class="contact-form-submission">'
-			. '<p>' . join( '</p><p>', self::get_compiled_form( $feedback_id, $form ) ) . '</p>'
-			. '</blockquote>';
 		}
 
 		return wp_kses(
@@ -3322,7 +3318,7 @@ class Grunion_Contact_Form_Field extends Crunion_Contact_Form_Shortcode {
 				// Make sure the email address is valid
 				if ( ! is_string( $field_value ) || ! is_email( $field_value ) ) {
 					/* translators: %s is the name of a form field */
-					$this->add_error( sprintf( __( '%s requires a valid email address', 'jetpack' ), $field_label ) );
+					$this->add_error( sprintf( __( 'L\'adresse e-mail renseignée est invalide', 'jetpack' ), $field_label ) );
 				}
 				break;
 			case 'checkbox-multiple':
@@ -3336,7 +3332,7 @@ class Grunion_Contact_Form_Field extends Crunion_Contact_Form_Shortcode {
 				// Just check for presence of any text
 				if ( ! is_string( $field_value ) || ! strlen( trim( $field_value ) ) ) {
 					/* translators: %s is the name of a form field */
-					$this->add_error( sprintf( __( '%s is required', 'jetpack' ), $field_label ) );
+					$this->add_error( sprintf( __( '%s est vide', 'jetpack' ), $field_label ) );
 				}
 		}
 	}

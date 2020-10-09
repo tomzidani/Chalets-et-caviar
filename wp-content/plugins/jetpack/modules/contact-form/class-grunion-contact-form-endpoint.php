@@ -21,7 +21,7 @@ if ( class_exists( 'WP_REST_Posts_Controller' ) ) {
 			if ( ! is_user_member_of_blog( get_current_user_id(), get_current_blog_id() ) ) {
 				return new WP_Error(
 					'rest_cannot_view',
-					esc_html__( 'Sorry, you cannot view this resource.', 'jetpack' ),
+					esc_html__( 'Désolé, mais vous ne pouvez pas accéder à ce contenu.', 'jetpack' ),
 					array( 'status' => 401 )
 				);
 			}
@@ -39,7 +39,7 @@ if ( class_exists( 'WP_REST_Posts_Controller' ) ) {
 			if ( ! is_user_member_of_blog( get_current_user_id(), get_current_blog_id() ) ) {
 				return new WP_Error(
 					'rest_cannot_view',
-					esc_html__( 'Sorry, you cannot view this resource.', 'jetpack' ),
+					esc_html__( 'Désolé, mais vous ne pouvez pas accéder à ce contenu.', 'jetpack' ),
 					array( 'status' => 401 )
 				);
 			}

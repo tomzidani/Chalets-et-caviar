@@ -21,6 +21,36 @@
 	width: 100%;
 }
 
+.send-btn{
+	position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-width: 1px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    line-height: 2;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+    border-radius: 0;
+    max-width: 100%;
+    letter-spacing: .05em;
+    padding: 1rem 4rem;
+	background-color: #aa9681;
+    border-color: #aa9681;    color: #fff;
+    margin: auto;
+}
+
+.send-btn:hover {
+    opacity: 0.8;
+}
+
 .contact-form select {
 	margin-bottom: 1.5em;
 }
